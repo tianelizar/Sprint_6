@@ -11,7 +11,7 @@ class TestOrderFlow:
 
     @allure.title("Проверка полного флоу заказа")
     @pytest.mark.parametrize("order_button, order_data", [(BaseLocators.ORDER_UPPER, order_data_1), (BaseLocators.ORDER_LOWER, order_data_2)])
-    def test_order_buttons_show_order_page(self, driver, order_button, order_data):
+    def test_order_flow_successful_order(self, driver, order_button, order_data):
 
         order_page = OrderPage(driver)
 
