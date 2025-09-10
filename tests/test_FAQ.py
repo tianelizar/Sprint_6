@@ -5,7 +5,6 @@ from locators.faq_locators import *
 from pages.faq_main_page import *
 
 @allure.suite('Тесты вопросов и ответов')
-@pytest.mark.usefixtures("driver_class")
 class TestFAQ:
 
     @pytest.mark.parametrize("question,answer", [
@@ -20,9 +19,9 @@ class TestFAQ:
     ])
 
     @allure.title('Проверка раскрытия вопроса и появления ответа')
-    def test_faq_question_show_answer(self, question, answer):
+    def test_faq_question_show_answer(self, driver, question, answer):
 
-        main_page = MainPageFAQ(self.driver)
+        main_page = MainPageFAQ(driver)
 
         with allure.step('Кликнуть на вопрос'):
             main_page.click_on_question(question)
