@@ -41,6 +41,13 @@ class BasePage:
 
     # Проверить, что адрес страницы совпадает с ожидаемым
     def is_expected_page(self, expected_url):
-        return self.driver.current_url == expected_url
+        return expected_url in self.driver.current_url
+    
+    @allure.step('Перейти в окно редиректа')
+    def switch_to_tab(self, target_url):
+        WebDriverWait(self.driver, 10).until(EC.number_of_windows_to_be(2))
+        self.driver.switch_to.window(self.driver.window_handles[-1])
+        WebDriverWait(self.driver, 10).until(EC.url_contains(target_url))
+        
     
     

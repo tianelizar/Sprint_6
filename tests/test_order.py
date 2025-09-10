@@ -92,5 +92,6 @@ class TestLogos:
             order_page.click_on_yandex()
 
         with allure.step('Проверить редирект на Дзен'):
-            assert order_page.is_dzen()
+            order_page.switch_to_dzen()
+            assert order_page.is_dzen(), "Не на странице Дзена"
 

@@ -145,9 +145,10 @@ class OrderPage(BasePage):
     def click_on_yandex(self):
         self.click_on_element(BaseLocators.LOGO_YANDEX)
 
-    @allure.step('Проверить редирект на Дзен')
+    @allure.step('Переключиться в окно редиректа на Дзен')
+    def switch_to_dzen(self):
+        self.switch_to_tab(dzen_url)
+
+    @allure.step('Проверить адрес редиректа на Дзен')
     def is_dzen(self):
-        WebDriverWait(self.driver, 10).until(EC.number_of_windows_to_be(2))
-        self.driver.switch_to.window(self.driver.window_handles[-1])
-        WebDriverWait(self.driver, 10).until(EC.url_contains(dzen_url))
-        return dzen_url in self.driver.current_url
+        return self.is_expected_page(dzen_url)
