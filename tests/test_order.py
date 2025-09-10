@@ -74,6 +74,9 @@ class TestLogos:
         
         order_page = OrderPage(driver)
 
+        with allure.step('Кликнуть по верхней кнопке Заказать'):
+            order_page.click_order_upper()
+
         with allure.step('Кликнуть на логотип самоката'):
             order_page.click_on_scooter()
         
