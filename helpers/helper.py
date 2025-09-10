@@ -9,13 +9,9 @@ def generate_phone_number():
     number = ''.join(str(random.randint(0, 9)) for _ in range(10))  # 10 случайных цифр
     return f"+7{number}"
 
-def generate_order_data(): # случайные данные для заполнения полей о заказчике
-    return {
-        "name": fake.first_name(),
-        "surname": fake.last_name(),
-        "address": fake.street_name(),
-        "phone": generate_phone_number()
-    }
+def generate_random_comment(length):
+    letters = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+    return ''.join(random.choice(letters) for _ in range(length))
 
 def get_valid_rental_date(): # случайная дата, начиная с завтрашней
     today = datetime.now().date()
@@ -25,6 +21,15 @@ def get_valid_rental_date(): # случайная дата, начиная с з
     random_day = random.randint(tomorrow.day, last_day)
     return random_day
 
-def generate_random_comment(length):
-    letters = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
-    return ''.join(random.choice(letters) for _ in range(length))
+def generate_order_data(): # случайные данные для заполнения полей о заказчике
+    return {
+        "name": fake.first_name(),
+        "surname": fake.last_name(),
+        "address": fake.street_name(),
+        "phone": generate_phone_number(), 
+        "random_day": get_valid_rental_date(), 
+        "comment": generate_random_comment(30)
+    }
+
+order_data_1 = generate_order_data()
+order_data_2 = generate_order_data()

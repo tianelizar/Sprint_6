@@ -89,8 +89,7 @@ class OrderPage(BasePage):
         self.click_on_element(OrderLocators.RENTAL_DATE)
 
     @allure.step('Выбрать случайную дату')
-    def choose_random_day(self):
-        random_day = get_valid_rental_date()
+    def choose_random_day(self, random_day):
         day_locator = (OrderLocators.RENTAL_DATE_CHOOSE[0], OrderLocators.RENTAL_DATE_CHOOSE[1].format(random_day))
         self.click_on_element(day_locator)
 
@@ -115,8 +114,7 @@ class OrderPage(BasePage):
         self.click_on_element(OrderLocators.COMMENT_INPUT)
 
     @allure.step('Заполнить поле Комментарий')
-    def fill_comment(self):
-        comment = generate_random_comment(30)
+    def fill_comment(self, comment):
         self.send_keys_to_input(OrderLocators.COMMENT_INPUT, comment)
 
     @allure.step('Проверить появление всплывающего окна подтверждения заказа')
