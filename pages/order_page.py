@@ -59,7 +59,7 @@ class OrderPage(BasePage):
         self.send_keys_to_input(OrderLocators.METRO_INPUT, 'Сокольники')
         self.click_on_element(OrderLocators.METRO_SAMPLE)
 
-    @allure.step('Выбрать случайную станцию: {random_station}')
+    @allure.step('Выбрать случайную станцию:')
     def choose_random_station(self):
         stations = self.wait_for_elements(OrderLocators.METRO_ALL_STATIONS)        
         if not stations:
@@ -97,13 +97,13 @@ class OrderPage(BasePage):
     def open_period_list(self):
         self.click_on_element(OrderLocators.RENTAL_PERIOD)
 
-    @allure.step('Выбрать случайный срок аренды: {random_period}')
+    @allure.step('Выбрать случайный срок аренды')
     def choose_random_period(self):
         period_options = self.wait_for_elements(OrderLocators.RENTAL_PERIOD_ALL_OPTIONS)
         random_period = random.choice(period_options)
         self.click_on_element(random_period)
 
-    @allure.step('Выбрать случайные цвета самоката: {colors}')
+    @allure.step('Выбрать случайные цвета самоката')
     def choose_random_colors(self):
         colors = [OrderLocators.COLOR_BLACK, OrderLocators.COLOR_GREY]
         for locator in random.sample(colors, k=random.randint(0, 2)):
