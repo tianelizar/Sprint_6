@@ -30,7 +30,7 @@ class OrderPage(BasePage):
     def click_on_name(self):
         self.click_on_element(OrderLocators.NAME_INPUT)
 
-    @allure.step('Заполнить поле Имя')
+    @allure.step('Заполнить поле Имя: {name}')
     def fill_name(self, name):
         self.send_keys_to_input(OrderLocators.NAME_INPUT, name)
 
@@ -38,7 +38,7 @@ class OrderPage(BasePage):
     def click_on_surname(self):
         self.click_on_element(OrderLocators.SURNAME_INPUT)
 
-    @allure.step('Заполнить поле Фамилия')
+    @allure.step('Заполнить поле Фамилия: {surname}')
     def fill_surname(self, surname):
         self.send_keys_to_input(OrderLocators.SURNAME_INPUT, surname)
 
@@ -46,7 +46,7 @@ class OrderPage(BasePage):
     def click_on_address(self):
         self.click_on_element(OrderLocators.ADDRESS_INPUT)
 
-    @allure.step('Заполнить поле Адрес')
+    @allure.step('Заполнить поле Адрес: {address}')
     def fill_address(self, address):
         self.send_keys_to_input(OrderLocators.ADDRESS_INPUT, address)
 
@@ -59,7 +59,7 @@ class OrderPage(BasePage):
         self.send_keys_to_input(OrderLocators.METRO_INPUT, 'Сокольники')
         self.click_on_element(OrderLocators.METRO_SAMPLE)
 
-    @allure.step('Выбрать случайную станцию')
+    @allure.step('Выбрать случайную станцию: {random_station}')
     def choose_random_station(self):
         stations = self.wait_for_elements(OrderLocators.METRO_ALL_STATIONS)        
         if not stations:
@@ -72,7 +72,7 @@ class OrderPage(BasePage):
     def click_on_phone(self):
         self.click_on_element(OrderLocators.PHONE_INPUT)
 
-    @allure.step('Заполнить поле Телефон')
+    @allure.step('Заполнить поле Телефон: {phone}')
     def fill_phone(self, phone):
         self.send_keys_to_input(OrderLocators.PHONE_INPUT, phone)
 
@@ -88,7 +88,7 @@ class OrderPage(BasePage):
     def open_calendar(self):
         self.click_on_element(OrderLocators.RENTAL_DATE)
 
-    @allure.step('Выбрать случайную дату')
+    @allure.step('Выбрать случайную дату: {random_day}')
     def choose_random_day(self, random_day):
         day_locator = (OrderLocators.RENTAL_DATE_CHOOSE[0], OrderLocators.RENTAL_DATE_CHOOSE[1].format(random_day))
         self.click_on_element(day_locator)
@@ -97,13 +97,13 @@ class OrderPage(BasePage):
     def open_period_list(self):
         self.click_on_element(OrderLocators.RENTAL_PERIOD)
 
-    @allure.step('Выбрать случайный срок аренды')
+    @allure.step('Выбрать случайный срок аренды: {random_period}')
     def choose_random_period(self):
         period_options = self.wait_for_elements(OrderLocators.RENTAL_PERIOD_ALL_OPTIONS)
         random_period = random.choice(period_options)
         self.click_on_element(random_period)
 
-    @allure.step('Выбрать случайные цвета самоката')
+    @allure.step('Выбрать случайные цвета самоката: {colors}')
     def choose_random_colors(self):
         colors = [OrderLocators.COLOR_BLACK, OrderLocators.COLOR_GREY]
         for locator in random.sample(colors, k=random.randint(0, 2)):
@@ -113,7 +113,7 @@ class OrderPage(BasePage):
     def click_on_comment(self):
         self.click_on_element(OrderLocators.COMMENT_INPUT)
 
-    @allure.step('Заполнить поле Комментарий')
+    @allure.step('Заполнить поле Комментарий: {comment}')
     def fill_comment(self, comment):
         self.send_keys_to_input(OrderLocators.COMMENT_INPUT, comment)
 

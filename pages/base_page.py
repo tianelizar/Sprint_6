@@ -7,11 +7,11 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    # Подождать видимости элемента
+    @allure.step('Подождать видимости элемента')
     def wait_for_element(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
 
-   # Скролл до элемента
+    @allure.step('Скролл до элемента')
     def scroll_to_element(self, element_or_locator):
         if isinstance(element_or_locator, tuple):
             element = self.wait_for_element(element_or_locator)
@@ -29,17 +29,17 @@ class BasePage:
         element.click()
 
 
-   # Подождать видимости элементов
+    @allure.step('Подождать видимости элементов')
     def wait_for_elements(self, locator, timeout = 10):
         return WebDriverWait(self.driver, timeout).until(EC.presence_of_all_elements_located(locator))
     
-   # Ввести текст в поле ввода
+    @allure.step('Ввести текст в поле ввода')
     def send_keys_to_input(self, locator, keys, timeout=10):
         element = self.wait_for_element(locator, timeout)
         element.clear()
         element.send_keys(keys)
 
-    # Проверить, что адрес страницы совпадает с ожидаемым
+    @allure.step('Проверить, что адрес страницы совпадает с ожидаемым')
     def is_expected_page(self, expected_url):
         return expected_url in self.driver.current_url
     
